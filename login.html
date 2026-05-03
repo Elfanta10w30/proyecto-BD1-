@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Iniciar sesión – Delivery Barranquitas</title>
+  <link rel="stylesheet" href="styles.css"/>
+</head>
+<body>
+
+<button class="btn-icon theme-fab" data-theme-toggle onclick="toggleThemeQuick()" title="Cambiar tema">🌙</button>
+
+<div class="auth-page" id="authPage">
+
+  <!-- Logo -->
+  <div class="auth-logo">
+    <div class="logo-icon">🍔</div>
+    <div class="logo-text">Delivery<span>B</span></div>
+  </div>
+
+  <!-- Card -->
+  <div class="auth-card" id="authCard">
+
+    <!-- Login Form (default) -->
+    <div id="loginSection">
+      <h1>Bienvenido 👋</h1>
+      <p class="auth-sub">Ingresa para continuar con tu pedido</p>
+
+      <div class="form-group">
+        <label>Correo electrónico</label>
+        <input type="email" id="loginEmail" placeholder="tu@correo.com" autocomplete="email"/>
+      </div>
+      <div class="form-group">
+        <label>Contraseña</label>
+        <input type="password" id="loginPassword" placeholder="••••••••" autocomplete="current-password"/>
+      </div>
+
+      <div style="text-align:right;margin-top:-4px;margin-bottom:16px">
+        <a href="#" style="font-size:13px;color:var(--brand);font-weight:600">¿Olvidaste tu contraseña?</a>
+      </div>
+
+      <button class="btn btn-primary btn-full btn-lg" onclick="doLogin()">Iniciar sesión</button>
+
+      <div class="auth-divider">o continúa con</div>
+
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px">
+        <button class="btn btn-secondary" onclick="guestLogin()">👤 Invitado</button>
+        <button class="btn btn-secondary" onclick="showRegister()">📝 Registrarse</button>
+      </div>
+
+      <div class="auth-footer">
+        ¿No tienes cuenta? <a href="#" onclick="showRegister()">Regístrate aquí</a>
+      </div>
+    </div>
+
+    <!-- Register Form (hidden by default) -->
+    <div id="registerSection" style="display:none">
+      <h1>Crear cuenta 🎉</h1>
+      <p class="auth-sub">Únete a Delivery Barranquitas</p>
+
+      <div class="form-group">
+        <label>Nombre completo</label>
+        <input type="text" id="regName" placeholder="Tu nombre"/>
+      </div>
+      <div class="form-group">
+        <label>Correo electrónico</label>
+        <input type="email" id="regEmail" placeholder="tu@correo.com"/>
+      </div>
+      <div class="form-group">
+        <label>Contraseña</label>
+        <input type="password" id="regPassword" placeholder="Mínimo 6 caracteres"/>
+      </div>
+
+      <div style="margin-bottom:16px">
+        <label style="font-size:12px;font-weight:600;color:var(--gray-600);display:block;margin-bottom:8px">Tipo de cuenta</label>
+        <div class="role-tabs">
+          <div class="role-tab active" data-role="cliente" onclick="selectRole('cliente',this)">
+            <span class="role-emoji">🙋</span>
+            <span class="role-name">Cliente</span>
+          </div>
+          <div class="role-tab" data-role="restaurante" onclick="selectRole('restaurante',this)">
+            <span class="role-emoji">🍽️</span>
+            <span class="role-name">Restaurante</span>
+          </div>
+          <div class="role-tab" data-role="repartidor" onclick="selectRole('repartidor',this)">
+            <span class="role-emoji">🛵</span>
+            <span class="role-name">Repartidor</span>
+          </div>
+        </div>
+        <input type="hidden" id="regRole" value="cliente"/>
+      </div>
+
+      <button class="btn btn-primary btn-full btn-lg" onclick="doRegister()">Crear cuenta</button>
+
+      <div class="auth-footer">
+        ¿Ya tienes cuenta? <a href="#" onclick="showLogin()">Inicia sesión</a>
+      </div>
+    </div>
+
+  </div>
+
+  <p style="margin-top:20px;font-size:12px;color:var(--gray-400);text-align:center">
+    Al continuar, aceptas nuestros <a href="#" style="color:var(--brand)">Términos de uso</a>
+  </p>
+
+</div>
+
+<!-- ===== BOTTOM NAV ===== -->
+<nav class="bottom-nav">
+  <a href="index.html"><span class="nav-icon">🏠</span>Inicio</a>
+  <a href="menu.html"><span class="nav-icon">🍽️</span>Menú</a>
+  <a href="carrito.html"><span class="nav-icon">🛒</span>Carrito</a>
+  <a href="envios.html"><span class="nav-icon">🛵</span>Envíos</a>
+  <a href="perfil.html" class="active"><span class="nav-icon">👤</span>Perfil</a>
+</nav>
+
+<div class="toast-container" id="toastContainer"></div>
+<script src="script.js"></script>
+<script>
+  function showRegister() {
+    document.getElementById('loginSection').style.display = 'none';
+    document.getElementById('registerSection').style.display = 'block';
+  }
+  function showLogin() {
+    document.getElementById('registerSection').style.display = 'none';
+    document.getElementById('loginSection').style.display = 'block';
+  }
+  function selectRole(role, el) {
+    document.querySelectorAll('.role-tab').forEach(t => t.classList.remove('active'));
+    el.classList.add('active');
+    document.getElementById('regRole').value = role;
+  }
+</script>
+</body>
+</html>

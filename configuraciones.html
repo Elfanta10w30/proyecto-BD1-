@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+	<meta charset="UTF-8"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+	<title>Configuraciones - Delivery Barranquitas</title>
+	<link rel="stylesheet" href="styles.css"/>
+</head>
+<body>
+
+<header class="app-header">
+	<div class="header-inner">
+		<a href="index.html" class="header-logo">
+			<div class="logo-icon">🍔</div>
+			<div class="logo-text">Delivery<span>B</span></div>
+		</a>
+		<div class="header-actions">
+			<button class="btn-icon" data-theme-toggle onclick="toggleThemeQuick()" title="Cambiar tema">🌙</button>
+			<a href="perfil.html" class="btn-icon" title="Perfil">👤</a>
+		</div>
+	</div>
+</header>
+
+<main class="page-content" style="max-width:760px">
+	<div class="page-hero">
+		<div>
+			<h1>Configuraciones</h1>
+			<p>Personaliza tu experiencia en la app</p>
+		</div>
+		<div class="page-hero-emoji">⚙️</div>
+	</div>
+
+	<div class="form-card">
+		<h3>Preferencias generales</h3>
+
+		<div class="form-group">
+			<label for="cfgLang">Idioma</label>
+			<select id="cfgLang">
+				<option value="es">Espanol</option>
+				<option value="en">English</option>
+			</select>
+		</div>
+
+		<div class="form-group">
+			<label for="cfgNotif">Notificaciones</label>
+			<select id="cfgNotif">
+				<option value="1">Activadas</option>
+				<option value="0">Desactivadas</option>
+			</select>
+		</div>
+
+		<div class="form-group">
+			<label for="cfgTheme">Tema</label>
+			<select id="cfgTheme">
+				<option value="light">Claro</option>
+				<option value="dark">Oscuro</option>
+			</select>
+		</div>
+
+		<div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:8px">
+			<button class="btn btn-primary" onclick="guardarConfiguracionAvanzada()">Guardar configuracion</button>
+			<button class="btn btn-secondary" onclick="restablecerConfiguracion()">Restablecer por defecto</button>
+		</div>
+	</div>
+
+	<div class="form-card">
+		<h3>Acciones rapidas</h3>
+		<div class="menu-list" style="margin-bottom:0">
+			<div class="menu-list-item" onclick="clearCartSetting()">
+				<span class="item-icon">🗑️</span>
+				<span>Vaciar carrito</span>
+				<span class="item-arrow">›</span>
+			</div>
+			<div class="menu-list-item" onclick="location.href='index.html'">
+				<span class="item-icon">🏠</span>
+				<span>Volver al inicio</span>
+				<span class="item-arrow">›</span>
+			</div>
+		</div>
+	</div>
+</main>
+
+<nav class="bottom-nav">
+	<a href="index.html"><span class="nav-icon">🏠</span>Inicio</a>
+	<a href="menu.html"><span class="nav-icon">🍽️</span>Menu</a>
+	<a href="carrito.html" id="navCartLink"><span class="nav-icon">🛒</span>Carrito</a>
+	<a href="envios.html"><span class="nav-icon">🛵</span>Envios</a>
+	<a href="perfil.html" class="active"><span class="nav-icon">👤</span>Perfil</a>
+</nav>
+
+<div class="toast-container" id="toastContainer"></div>
+<script src="script.js"></script>
+</body>
+</html>

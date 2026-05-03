@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Envíos – Delivery Barranquitas</title>
+  <link rel="stylesheet" href="styles.css"/>
+</head>
+<body>
+
+<!-- ===== HEADER ===== -->
+<header class="app-header">
+  <div class="header-inner">
+    <a href="index.html" class="header-logo">
+      <div class="logo-icon">🍔</div>
+      <div class="logo-text">Delivery<span>B</span></div>
+    </a>
+    <div class="header-actions">
+      <button class="btn-icon" data-theme-toggle onclick="toggleThemeQuick()" title="Cambiar tema">🌙</button>
+      <a href="configuraciones.html" class="btn-icon" title="Configuración">⚙️</a>
+      <a href="carrito.html" class="btn-icon" id="cartBtn">
+        🛒
+        <span class="badge" id="cartBadge" style="display:none">0</span>
+      </a>
+    </div>
+  </div>
+</header>
+
+<main class="page-content">
+
+  <!-- Page Hero -->
+  <div class="page-hero">
+    <div>
+      <h1>Centro de Envíos</h1>
+      <p>Barranquitas, Puerto Rico</p>
+    </div>
+    <div class="page-hero-emoji">🛵</div>
+  </div>
+
+  <!-- Status Badge -->
+  <div class="alert alert-success" style="margin-bottom:16px">
+    ✅ Servicio activo · Entregando ahora · Tiempo estimado: 20–35 min
+  </div>
+
+  <!-- Map -->
+  <div class="map-frame">
+    <iframe
+      width="100%"
+      height="220"
+      frameborder="0"
+      scrolling="no"
+      src="https://www.openstreetmap.org/export/embed.html?bbox=-67.35%2C17.85%2C-65.20%2C18.55&layer=mapnik&marker=18.1866%2C-66.3060"
+      title="Mapa de Puerto Rico">
+    </iframe>
+  </div>
+  <div style="text-align:center;margin-bottom:16px">
+    <a href="https://www.openstreetmap.org/?mlat=18.1866&mlon=-66.3060#map=13/18.1866/-66.3060"
+       target="_blank" rel="noopener"
+       class="btn btn-secondary btn-sm">
+      🗺️ Abrir mapa completo
+    </a>
+  </div>
+
+  <!-- Restaurant Info -->
+  <div class="info-card">
+    <h3>🍽️ Restaurante</h3>
+    <div class="info-row">
+      <span class="info-icon">📍</span>
+      <div class="info-content">
+        <div class="info-label">Dirección</div>
+        <div class="info-value">Barranquitas, Puerto Rico 00794</div>
+      </div>
+    </div>
+    <div class="info-row">
+      <span class="info-icon">🕐</span>
+      <div class="info-content">
+        <div class="info-label">Horario</div>
+        <div class="info-value">Lun–Vie: 10am–9pm &nbsp;·&nbsp; Sáb–Dom: 10am–10pm</div>
+      </div>
+    </div>
+    <div class="info-row">
+      <span class="info-icon">📞</span>
+      <div class="info-content">
+        <div class="info-label">Teléfono</div>
+        <div class="info-value"><a href="tel:+17871234567" style="color:var(--brand)">+1 (787) 123-4567</a></div>
+      </div>
+    </div>
+    <div class="info-row">
+      <span class="info-icon">⭐</span>
+      <div class="info-content">
+        <div class="info-label">Calificación</div>
+        <div class="info-value">4.8 / 5.0 · 240+ reseñas</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Delivery Info -->
+  <div class="info-card">
+    <h3>🛵 Información de entrega</h3>
+    <div class="info-row">
+      <span class="info-icon">💰</span>
+      <div class="info-content">
+        <div class="info-label">Costo de envío</div>
+        <div class="info-value">$2.00 (gratis en pedidos +$25)</div>
+      </div>
+    </div>
+    <div class="info-row">
+      <span class="info-icon">⏱️</span>
+      <div class="info-content">
+        <div class="info-label">Tiempo estimado</div>
+        <div class="info-value">20–35 minutos</div>
+      </div>
+    </div>
+    <div class="info-row">
+      <span class="info-icon">📋</span>
+      <div class="info-content">
+        <div class="info-label">Pedido mínimo</div>
+        <div class="info-value">$8.00</div>
+      </div>
+    </div>
+    <div class="info-row">
+      <span class="info-icon">💳</span>
+      <div class="info-content">
+        <div class="info-label">Métodos de pago</div>
+        <div class="info-value">Efectivo · Tarjeta · ATH Móvil</div>
+      </div>
+    </div>
+    <div class="info-row">
+      <span class="info-icon">🗺️</span>
+      <div class="info-content">
+        <div class="info-label">Zona de cobertura</div>
+        <div class="info-value">Barranquitas y municipios cercanos</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Driver/Contact Card -->
+  <div class="info-card">
+    <h3>👨‍💼 Nuestro equipo</h3>
+    <div class="info-row">
+      <span class="info-icon">🛵</span>
+      <div class="info-content">
+        <div class="info-label">Repartidores activos</div>
+        <div class="info-value">3 repartidores en ruta ahora</div>
+      </div>
+    </div>
+    <div class="info-row">
+      <span class="info-icon">📲</span>
+      <div class="info-content">
+        <div class="info-label">Soporte WhatsApp</div>
+        <div class="info-value">
+          <a href="https://wa.me/17871234567" target="_blank" rel="noopener" style="color:var(--brand)">
+            Contactar por WhatsApp
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Send your location -->
+  <div class="form-card">
+    <h3>📍 Comparte tu ubicación</h3>
+    <p style="font-size:13px;color:var(--gray-400);margin-bottom:14px">
+      Permite que el repartidor sepa exactamente donde estás
+    </p>
+    <button class="btn btn-outline btn-full" id="geoBtn" onclick="getLocation()">
+      📡 Obtener mi ubicación
+    </button>
+    <div id="geoResult" style="margin-top:12px;font-size:13px;color:var(--gray-600)"></div>
+  </div>
+
+  <!-- Quick Order CTA -->
+  <a href="menu.html" class="btn btn-primary btn-full btn-lg" style="margin-bottom:8px">
+    🍽️ Ordenar ahora
+  </a>
+  <a href="https://wa.me/17871234567" target="_blank" rel="noopener" class="btn btn-whatsapp btn-full">
+    📲 Pedir por WhatsApp
+  </a>
+
+</main>
+
+<!-- ===== BOTTOM NAV ===== -->
+<nav class="bottom-nav">
+  <a href="index.html"><span class="nav-icon">🏠</span>Inicio</a>
+  <a href="menu.html"><span class="nav-icon">🍽️</span>Menú</a>
+  <a href="carrito.html" id="navCartLink"><span class="nav-icon">🛒</span>Carrito</a>
+  <a href="envios.html" class="active"><span class="nav-icon">🛵</span>Envíos</a>
+  <a href="perfil.html"><span class="nav-icon">👤</span>Perfil</a>
+</nav>
+
+<div class="toast-container" id="toastContainer"></div>
+
+<!-- SETTINGS MODAL -->
+<div class="modal-overlay" id="settingsOverlay" onclick="closeSettingsOutside(event)">
+  <div class="modal-sheet">
+    <div class="modal-handle"></div>
+    <div class="modal-title">⚙️ Configuración</div>
+    <div class="menu-list" style="margin-bottom:0">
+      <div class="menu-list-item" style="justify-content:space-between;cursor:default">
+        <span style="display:flex;align-items:center;gap:12px"><span class="item-icon">🌙</span><span>Modo oscuro</span></span>
+        <label class="toggle-switch"><input type="checkbox" id="darkToggle" onchange="toggleDark(this.checked)"/><span class="toggle-track"></span></label>
+      </div>
+      <div class="menu-list-item" style="justify-content:space-between;cursor:default">
+        <span style="display:flex;align-items:center;gap:12px"><span class="item-icon">🔔</span><span>Notificaciones</span></span>
+        <label class="toggle-switch"><input type="checkbox" id="notifToggle" checked onchange="saveSetting('notif', this.checked)"/><span class="toggle-track"></span></label>
+      </div>
+      <div class="menu-list-item" onclick="clearCartSetting()">
+        <span class="item-icon">🗑️</span><span>Vaciar carrito</span><span class="item-arrow">›</span>
+      </div>
+      <div class="menu-list-item" onclick="location.href='perfil.html'">
+        <span class="item-icon">👤</span><span>Mi cuenta</span><span class="item-arrow">›</span>
+      </div>
+      <div class="menu-list-item" onclick="showAbout()">
+        <span class="item-icon">ℹ️</span><span>Acerca de</span><span class="item-arrow">›</span>
+      </div>
+    </div>
+    <button class="btn btn-secondary btn-full" style="margin-top:20px" onclick="closeSettings()">Cerrar</button>
+  </div>
+</div>
+<script src="script.js"></script>
+<script>
+  function getLocation() {
+    const btn = document.getElementById('geoBtn');
+    const result = document.getElementById('geoResult');
+    btn.disabled = true;
+    btn.textContent = '⏳ Obteniendo ubicación…';
+    if (!navigator.geolocation) {
+      result.innerHTML = '❌ Tu navegador no soporta geolocalización.';
+      btn.disabled = false; btn.textContent = '📡 Obtener mi ubicación';
+      return;
+    }
+    navigator.geolocation.getCurrentPosition(
+      pos => {
+        const { latitude: lat, longitude: lng } = pos.coords;
+        result.innerHTML = `✅ Ubicación obtenida: <strong>${lat.toFixed(5)}, ${lng.toFixed(5)}</strong><br>
+          <a href="https://maps.google.com/?q=${lat},${lng}" target="_blank" rel="noopener" style="color:var(--brand)">
+            Ver en Google Maps →
+          </a>`;
+        btn.textContent = '✅ Ubicación obtenida';
+      },
+      () => {
+        result.innerHTML = '❌ No se pudo obtener la ubicación. Revisa los permisos.';
+        btn.disabled = false; btn.textContent = '📡 Obtener mi ubicación';
+      }
+    );
+  }
+</script>
+</body>
+</html>

@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Mi Carrito – Delivery Barranquitas</title>
+  <link rel="stylesheet" href="styles.css"/>
+</head>
+<body>
+
+<!-- ===== HEADER ===== -->
+<header class="app-header">
+  <div class="header-inner">
+    <a href="index.html" class="header-logo">
+      <div class="logo-icon">🍔</div>
+      <div class="logo-text">Delivery<span>B</span></div>
+    </a>
+    <div class="header-actions" style="margin-left:0;flex:1;justify-content:flex-end">
+      <button class="btn-icon" data-theme-toggle onclick="toggleThemeQuick()" title="Cambiar tema">🌙</button>
+      <a href="configuraciones.html" class="btn-icon" title="Configuración">⚙️</a>
+      <a href="menu.html" class="btn btn-secondary btn-sm">+ Agregar más</a>
+    </div>
+  </div>
+</header>
+
+<main class="page-content">
+  <div class="cart-container">
+
+    <!-- Page Hero -->
+    <div class="page-hero">
+      <div>
+        <h1>Tu Carrito</h1>
+        <p id="cartItemCountLabel">0 artículos</p>
+      </div>
+      <div class="page-hero-emoji">🛒</div>
+    </div>
+
+    <!-- Cart Items -->
+    <div id="cartItems"></div>
+
+    <!-- Empty state (hidden when cart has items) -->
+    <div class="cart-empty" id="cartEmpty" style="display:none">
+      <div class="empty-emoji">🛒</div>
+      <p>Tu carrito está vacío</p>
+      <small>Agrega algo delicioso del menú</small>
+      <a href="menu.html" class="btn btn-primary">Ver menú</a>
+    </div>
+
+    <!-- Order area (hidden when cart is empty) -->
+    <div id="cartCheckout" style="display:none">
+
+      <!-- Order Summary -->
+      <div class="order-summary">
+        <h3>📋 Resumen del pedido</h3>
+        <div class="summary-row"><span>Subtotal</span><span id="sumSubtotal">$0.00</span></div>
+        <div class="summary-row"><span>Envío</span><span id="sumEnvio">$2.00</span></div>
+        <div class="summary-row" id="discountRow" style="display:none;color:var(--green)">
+          <span>Descuento 🎉</span><span id="sumDescuento">-$0.00</span>
+        </div>
+        <div class="summary-row total"><span>Total</span><span id="sumTotal">$0.00</span></div>
+      </div>
+
+      <!-- Coupon -->
+      <div class="form-card" style="margin-top:12px">
+        <h3>🎫 Cupón de descuento</h3>
+        <div class="coupon-row">
+          <input type="text" id="couponInput" placeholder="Ingresa tu cupón…" autocomplete="off"/>
+          <button class="btn btn-outline btn-sm" onclick="applyCoupon()">Aplicar</button>
+        </div>
+        <p class="coupon-msg" id="couponMsg"></p>
+        <div style="font-size:11px;color:var(--gray-400)">Cupones: BARRANQUITAS10 · CIELO5 · ENVIOGRATIS</div>
+      </div>
+
+      <!-- Delivery Form -->
+      <div class="form-card">
+        <h3>📍 Datos de entrega</h3>
+        <div class="form-group">
+          <label>Nombre completo</label>
+          <input type="text" id="orderName" placeholder="Tu nombre"/>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label>Teléfono</label>
+            <input type="tel" id="orderPhone" placeholder="787-000-0000"/>
+          </div>
+          <div class="form-group">
+            <label>Método de pago</label>
+            <select id="orderPayment">
+              <option value="efectivo">💵 Efectivo</option>
+              <option value="tarjeta">💳 Tarjeta</option>
+              <option value="ath_movil">📱 ATH Móvil</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Dirección de entrega</label>
+          <input type="text" id="orderAddress" placeholder="Calle, número, sector…"/>
+        </div>
+        <div class="form-group">
+          <label>Instrucciones especiales (opcional)</label>
+          <textarea id="orderNotes" rows="2" placeholder="Sin cebolla, extra salsa…"></textarea>
+        </div>
+      </div>
+
+      <!-- Action Buttons -->
+      <div style="display:flex;flex-direction:column;gap:10px">
+        <button class="btn btn-primary btn-full btn-lg" id="orderBtn" onclick="submitOrder()">
+          Confirmar pedido
+        </button>
+        <button class="btn btn-whatsapp btn-full" id="waBtn" onclick="sendWhatsApp()">
+          📲 Pedir por WhatsApp
+        </button>
+      </div>
+
+      <!-- Order Tracking (hidden until submitted) -->
+      <div class="form-card" id="trackingCard" style="display:none;margin-top:16px">
+        <h3>📦 Seguimiento de tu pedido</h3>
+        <div class="tracking-steps" id="trackingSteps">
+          <div class="track-step" id="step1">
+            <div class="track-dot">📝</div>
+            <div class="track-info"><h4>Pedido recibido</h4><p>Estamos procesando tu orden</p></div>
+          </div>
+          <div class="track-step" id="step2">
+            <div class="track-dot">👨‍🍳</div>
+            <div class="track-info"><h4>Preparando tu comida</h4><p>El chef está en ello</p></div>
+          </div>
+          <div class="track-step" id="step3">
+            <div class="track-dot">🛵</div>
+            <div class="track-info"><h4>En camino</h4><p>Tu repartidor está en ruta</p></div>
+          </div>
+          <div class="track-step" id="step4">
+            <div class="track-dot">🏠</div>
+            <div class="track-info"><h4>Entregado</h4><p>¡Buen provecho!</p></div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</main>
+
+<!-- ===== BOTTOM NAV ===== -->
+<nav class="bottom-nav">
+  <a href="index.html"><span class="nav-icon">🏠</span>Inicio</a>
+  <a href="menu.html"><span class="nav-icon">🍽️</span>Menú</a>
+  <a href="carrito.html" class="active"><span class="nav-icon">🛒</span>Carrito</a>
+  <a href="envios.html"><span class="nav-icon">🛵</span>Envíos</a>
+  <a href="perfil.html"><span class="nav-icon">👤</span>Perfil</a>
+</nav>
+
+<div class="toast-container" id="toastContainer"></div>
+
+<!-- SETTINGS MODAL -->
+<div class="modal-overlay" id="settingsOverlay" onclick="closeSettingsOutside(event)">
+  <div class="modal-sheet">
+    <div class="modal-handle"></div>
+    <div class="modal-title">⚙️ Configuración</div>
+    <div class="menu-list" style="margin-bottom:0">
+      <div class="menu-list-item" style="justify-content:space-between;cursor:default">
+        <span style="display:flex;align-items:center;gap:12px"><span class="item-icon">🌙</span><span>Modo oscuro</span></span>
+        <label class="toggle-switch"><input type="checkbox" id="darkToggle" onchange="toggleDark(this.checked)"/><span class="toggle-track"></span></label>
+      </div>
+      <div class="menu-list-item" style="justify-content:space-between;cursor:default">
+        <span style="display:flex;align-items:center;gap:12px"><span class="item-icon">🔔</span><span>Notificaciones</span></span>
+        <label class="toggle-switch"><input type="checkbox" id="notifToggle" checked onchange="saveSetting('notif', this.checked)"/><span class="toggle-track"></span></label>
+      </div>
+      <div class="menu-list-item" onclick="clearCartSetting()">
+        <span class="item-icon">🗑️</span><span>Vaciar carrito</span><span class="item-arrow">›</span>
+      </div>
+      <div class="menu-list-item" onclick="location.href='perfil.html'">
+        <span class="item-icon">👤</span><span>Mi cuenta</span><span class="item-arrow">›</span>
+      </div>
+      <div class="menu-list-item" onclick="showAbout()">
+        <span class="item-icon">ℹ️</span><span>Acerca de</span><span class="item-arrow">›</span>
+      </div>
+    </div>
+    <button class="btn btn-secondary btn-full" style="margin-top:20px" onclick="closeSettings()">Cerrar</button>
+  </div>
+</div>
+<script src="script.js"></script>
+</body>
+</html>
